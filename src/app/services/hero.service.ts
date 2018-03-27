@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Hero } from '../entities/hero';
 import { MessageService } from './message.service';
+import { LoggerService } from './logger.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,10 +16,11 @@ const httpOptions = {
 @Injectable()
 export class HeroService {
 
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'api/heroes1';
 
   constructor(
     private http: HttpClient,
+    private logger: LoggerService,
     private messageService: MessageService) { }
 
   private log (message: string) {
@@ -28,7 +30,7 @@ export class HeroService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
-      console.error(error); // log to console instead
+      this.logger.error(error); // log to console instead
 
       this.log(`${operation} failed: ${error.message}`);
 
@@ -52,7 +54,7 @@ export class HeroService {
   getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl).pipe(
       tap(heroes => {
-        console.log('getHeroes ', heroes);
+        this.logger.log(heroes);
         this.log('fetched heroes');
       }),
       catchError(this.handleError('getHeroes', []))
