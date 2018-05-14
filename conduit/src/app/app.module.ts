@@ -13,10 +13,16 @@ import { CheckAuthedDirective } from './directives/check-authed.directive';
 import { RestApiService } from './services/rest-api.service';
 import { UserService } from './services/user.service';
 import { JwtService } from './services/jwt.service';
+import { ArticleService } from './services/article.service';
+import { TagService } from './services/tag.service';
 import { HoverDirective } from './directives/hover.directive';
 import { CheckEmailDirective } from './directives/check-email.directive';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { PostComponent } from './pages/profile/post/post.component';
+import { FavPostComponent } from './pages/profile/fav-post/fav-post.component';
+import { EditorComponent } from './pages/editor/editor.component';
+import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
     HoverDirective,
     CheckEmailDirective,
     SettingsComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostComponent,
+    FavPostComponent,
+    EditorComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +51,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
   providers: [
     RestApiService,
     UserService,
-    JwtService
+    JwtService,
+    TagService,
+    ArticleService
   ],
   bootstrap: [AppComponent]
 })

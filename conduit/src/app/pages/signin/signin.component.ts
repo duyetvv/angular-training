@@ -28,7 +28,6 @@ export class SigninComponent implements OnInit {
       password: this.password
     })
     .subscribe(data => {
-      debugger
       this.router.navigate(['/'])
     })
   }

@@ -25,10 +25,11 @@ export class RestApiService {
       .pipe(catchError(this.formatErrors));
   }
 
-  put(path: string, body: Object = {}): Observable<any> {
+  put(path: string, body: Object = {}, opts: any = {}): Observable<any> {
     return this.http.put(
       `${apiUrl}${path}`,
-      JSON.stringify(body)
+      JSON.stringify(body),
+      setOptions(opts)
     ).pipe(catchError(this.formatErrors));
   }
 

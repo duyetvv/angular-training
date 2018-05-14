@@ -66,4 +66,16 @@ export class UserService {
       }))
   }
 
+  updateUser(user) {
+    const token = this.jwtService.getToken();
+
+    return this.restApi.put(
+      currentUser,
+      { user },
+      { Authorization: `Token ${token}` }
+    ).pipe(map(data => {
+      return data;
+    }))
+  }
+
 }

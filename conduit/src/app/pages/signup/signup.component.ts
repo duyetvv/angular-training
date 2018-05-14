@@ -29,7 +29,6 @@ export class SignupComponent implements OnInit {
       username: this.username,
       password: this.password
     }).subscribe(data => {
-      debugger
       this.router.navigate['/'];
     })
   }
