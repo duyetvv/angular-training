@@ -1,0 +1,73 @@
+<div class="auth-page">
+    <div class="container page">
+      <div class="row">
+  
+        <div class="col-md-6 offset-md-3 col-xs-12">
+          <h1 class="text-xs-center">{{ title }}</h1>
+          <p class="text-xs-center">
+            <a [routerLink]="['/register']">Need an account?</a>
+          </p>
+          <form #registerForm="ngForm" (ngSubmit)="submitForm()">
+            <fieldset [hidden]="registerForm.submitted">
+  
+              <fieldset class="form-group">
+                <input
+                  required
+                  name="email"
+                  #emailElm="ngModel"
+                  [(ngModel)]="email"
+                  placeholder="Email"
+                  appCheckEmail=""
+                  class="form-control form-control-lg"
+                  type="email" />
+  
+                <div *ngIf="emailElm.invalid && (emailElm.dirty || emailElm.touched)" class="alert alert-danger">
+                  <div *ngIf="emailElm.errors.required">Email is required</div>
+                  <div *ngIf="emailElm.errors.email">Invalid Email</div>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-group">
+                <input
+                  required
+                  name="username"
+                  #usernameElm="ngModel"
+                  [(ngModel)]="username"
+                  placeholder="Username"
+                  class="form-control form-control-lg"
+                  type="text" />
+
+                <div *ngIf="usernameElm.invalid && (usernameElm.dirty || usernameElm.touched)" class="alert alert-danger">
+                  <div *ngIf="usernameElm.errors.required">User name is required</div>
+                </div>
+              </fieldset>
+  
+              <fieldset class="form-group">
+                <input
+                  required
+                  name="password"
+                  #passwordElm="ngModel"
+                  [(ngModel)]="password"
+                  placeholder="Password"
+                  class="form-control form-control-lg"
+                  type="password" />
+  
+                <div *ngIf="passwordElm.invalid && (passwordElm.dirty || passwordElm.touched)" 
+                  class="alert alert-danger">
+                  <div *ngIf="passwordElm.errors.required">Password is required</div>
+                </div>
+              </fieldset>
+  
+              <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!registerForm.valid" type="submit">
+                {{ title }}
+              </button>
+  
+            </fieldset>
+          </form>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

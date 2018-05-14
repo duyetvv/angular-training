@@ -1,0 +1,90 @@
+<div class="settings-page">
+    <div class="container page">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 col-xs-12">
+  
+          <h1 class="text-xs-center">Your Settings</h1>
+  
+          <form #settingsForm="ngForm" (ngSubmit)="submitForm()">
+            <fieldset [hidden]="settingsForm.submitted">
+  
+              <fieldset class="form-group">
+                <input class="form-control"
+                  type="text"
+                  [(ngModel)]="image"
+                  placeholder="URL of profile picture"
+                  name="image" />
+              </fieldset>
+  
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg"
+                  required
+                  #usernameElm="ngModel"
+                  [(ngModel)]="username"
+                  type="text"
+                  placeholder="Username"
+                  name="username" />
+
+                <div *ngIf="usernameElm.invalid && (usernameElm.dirty || usernameElm.touched)" class="alert alert-danger">
+                  <div *ngIf="usernameElm.errors.required">User name is required</div>
+                </div>
+              </fieldset>
+  
+              <fieldset class="form-group">
+                <textarea class="form-control form-control-lg"
+                  rows="8"
+                  [(ngModel)]="bio"
+                  placeholder="Short bio about you"
+                  name="bio">
+                </textarea>
+              </fieldset>
+  
+              <fieldset class="form-group">
+                <input
+                  required
+                  name="email"
+                  #emailElm="ngModel"
+                  [(ngModel)]="email"
+                  placeholder="Email"
+                  appCheckEmail=""
+                  class="form-control form-control-lg"
+                  type="email" />
+    
+                <div *ngIf="emailElm.invalid && (emailElm.dirty || emailElm.touched)" class="alert alert-danger">
+                  <div *ngIf="emailElm.errors.required">Email is required</div>
+                  <div *ngIf="emailElm.errors.email">Invalid Email</div>
+                </div>
+              </fieldset>
+  
+              <fieldset class="form-group">
+                <input class="form-control form-control-lg"
+                  required
+                  #passwordElm="ngModel"
+                  [(ngModel)]="password"
+                  type="password"
+                  placeholder="New Password"
+                  name="password" />
+                
+                <div *ngIf="passwordElm.invalid && (passwordElm.dirty || passwordElm.touched)" class="alert alert-danger">
+                  <div *ngIf="passwordElm.errors.required">Password is required</div>
+                </div>
+              </fieldset>
+  
+              <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+                Update Settings
+              </button>
+  
+            </fieldset>
+          </form>
+  
+          <hr />
+  
+          <button class="btn btn-outline-danger"
+            (click)="logout()">
+            Or click here to logout.
+          </button>
+  
+        </div>
+      </div>
+    </div>
+  </div>
