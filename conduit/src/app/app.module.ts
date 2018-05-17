@@ -23,6 +23,9 @@ import { PostComponent } from './pages/profile/post/post.component';
 import { FavPostComponent } from './pages/profile/fav-post/fav-post.component';
 import { EditorComponent } from './pages/editor/editor.component';
 import { ArticleDetailsComponent } from './pages/article-details/article-details.component';
+import { ProfileService } from './services/profile.service';
+import { ArticleComponent } from './components/article/article.component';
+import { ArticleMetaComponent } from './components/article-meta/article-meta.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { ArticleDetailsComponent } from './pages/article-details/article-details
     PostComponent,
     FavPostComponent,
     EditorComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    ArticleComponent,
+    ArticleMetaComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,8 @@ import { ArticleDetailsComponent } from './pages/article-details/article-details
     UserService,
     JwtService,
     TagService,
-    ArticleService
+    ArticleService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })
