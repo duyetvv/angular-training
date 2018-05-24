@@ -28,4 +28,8 @@ export class FavPostComponent implements OnInit {
     });
   }
 
+  ngOnChanges() {
+    console.log('change Fav');
+  }
+
 }

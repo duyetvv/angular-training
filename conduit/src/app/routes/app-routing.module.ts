@@ -9,6 +9,7 @@ import { EditorComponent } from '../pages/editor/editor.component';
 import { ProfileComponent } from '../pages/profile/profile.component';
 import { PostComponent } from '../pages/profile/post/post.component';
 import { FavPostComponent } from '../pages/profile/fav-post/fav-post.component';
+import { ArticleDetailsComponent } from '../pages/article-details/article-details.component'
 
 const routes: Routes = [
   {
@@ -38,6 +39,9 @@ const routes: Routes = [
         component: FavPostComponent
       }
     ]
+  }, {
+    path: 'article/:slug',
+    component: ArticleDetailsComponent
   }
 ];
 

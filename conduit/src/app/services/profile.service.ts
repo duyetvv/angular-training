@@ -12,16 +12,16 @@ export class ProfileService {
   constructor(private restApi: RestApiService) { }
 
   get(username: string): Observable<Profile> {
-    return this.restApi.get(`${profiles_path}/:${username}`)
+    return this.restApi.get({path: `${profiles_path}/:${username}`})
       .pipe(map((data: {profile: Profile}) => data.profile));
   }
 
   follow(username: string): Observable<Profile> {
-    return this.restApi.post(`${profiles_path}/:${username}/follow`);
+    return this.restApi.post({ path: `${profiles_path}/:${username}/follow`});
   }
 
   unfollow(username: string): Observable<Profile> {
-    return this.restApi.delete(`${profiles_path}/:${username}/follow`);
+    return this.restApi.delete({ path: `${profiles_path}/:${username}/follow`});
   }
 
 }

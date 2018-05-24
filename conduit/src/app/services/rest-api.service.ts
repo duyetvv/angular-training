@@ -9,7 +9,9 @@ const defaultOpts = {
   'Content-Type':'application/json; charset=utf-8'
 }
 
-const setOptions = (opts) => ({ headers: new HttpHeaders({ ...defaultOpts, ...opts }) })
+const setOptions = (opts) => ({
+  headers: new HttpHeaders({ ...defaultOpts, ...opts })
+})
 
 @Injectable()
 export class RestApiService {
@@ -20,12 +22,16 @@ export class RestApiService {
     return new ErrorObservable(error.error);
   }
 
-  get(path: string, opts: any = {}): Observable<any> {
+  get(params): Observable<any> {
+    const { path, opts = {} } = params;
+
     return this.http.get(`${apiUrl}${path}`, setOptions(opts))
       .pipe(catchError(this.formatErrors));
   }
 
-  put(path: string, body: Object = {}, opts: any = {}): Observable<any> {
+  put(params): Observable<any> {
+    const { path, body = {}, opts = {} } = params;
+
     return this.http.put(
       `${apiUrl}${path}`,
       JSON.stringify(body),
@@ -33,7 +39,9 @@ export class RestApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  post(path: string, body: Object = {}, opts:any = {}): Observable<any> {
+  post(params): Observable<any> {
+    const { path, body = {}, opts = {} } = params;
+
     return this.http.post(
       `${apiUrl}${path}`,
       JSON.stringify(body),
@@ -41,9 +49,12 @@ export class RestApiService {
     ).pipe(catchError(this.formatErrors));
   }
 
-  delete(path): Observable<any> {
+  delete(params): Observable<any> {
+    const { path, opts = {} } = params;
+
     return this.http.delete(
-      `${apiUrl}${path}`
+      `${apiUrl}${path}`,
+      setOptions(opts)
     ).pipe(catchError(this.formatErrors));
   }
 

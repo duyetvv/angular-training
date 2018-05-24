@@ -27,12 +27,13 @@ export class UserService {
   computed() {
     const token = this.jwtService.getToken();
     if (token) {
-      this.restApi
-        .get(currentUser, {Authorization: `Token ${token}`})
-        .subscribe(
-          data => this.setAuthed(data.user),
-          error => this.purgeAuth()
-        )
+      this.restApi.get({
+        path: currentUser,
+        opts: {Authorization: `Token ${token}`}
+      }).subscribe(
+        data => this.setAuthed(data.user),
+        error => this.purgeAuth()
+      )
     } else {
       this.purgeAuth();
     }
@@ -51,29 +52,33 @@ export class UserService {
   }
 
   login(user) {
-    return this.restApi.post(authentication, { user })
-      .pipe(map(data => {
-        this.setAuthed(data.user);
-        return data;
-      }));
+    return this.restApi.post({
+      path: authentication,
+      body: { user }
+    }).pipe(map(data => {
+      this.setAuthed(data.user);
+      return data;
+    }));
   }
 
   register(user) {
-    return this.restApi.post(registration, { user })
-      .pipe(map(data => {
-        this.setAuthed(data.user);
-        return data;
-      }))
+    return this.restApi.post({
+      path: registration,
+      body: { user }
+    }).pipe(map(data => {
+      this.setAuthed(data.user);
+      return data;
+    }))
   }
 
   updateUser(user) {
     const token = this.jwtService.getToken();
 
-    return this.restApi.put(
-      currentUser,
-      { user },
-      { Authorization: `Token ${token}` }
-    ).pipe(map(data => {
+    return this.restApi.put({
+      path: currentUser,
+      body: { user },
+      opts: { Authorization: `Token ${token}` }
+    }).pipe(map(data => {
       return data;
     }))
   }

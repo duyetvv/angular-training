@@ -1,3 +1,4 @@
-<p>
-  fav-post works!
-</p>
+<div *ngIf="!articles.length">Loading articles...</div>
+<div *ngFor="let article of articles">
+  <app-article [article]="article"></app-article>
+</div>
